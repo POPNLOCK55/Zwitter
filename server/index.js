@@ -9,11 +9,11 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRotutes from "./routes/routesAuth.js";
-import userRoutes from "./routes/user.js";
-import postRoutes from "./routes/post.js";
-import { createPost } from "./controllers/posts.js";
+import userRoutes from "./routes/userRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
+import { createPost } from "./controllers/postsController.js";
 import { register } from "./controllers/userAuth.js";
-import { verifyToken } from "./controllers/posts.js";
+import { verifyToken } from "./middleware/middleAuth.js";
 
 /* MIDDLEWARE CONFIGS */
 
