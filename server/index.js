@@ -14,6 +14,9 @@ import postRoutes from "./routes/postRoutes.js";
 import { createPost } from "./controllers/postsController.js";
 import { register } from "./controllers/userAuth.js";
 import { verifyToken } from "./middleware/middleAuth.js";
+import User from "./models/userModel.js";
+import Post from "./models/postModel.js";
+import { users, posts } from "./data/index.js";
 
 /* MIDDLEWARE CONFIGS */
 
@@ -55,7 +58,11 @@ app.use("/posts", postRoutes);
 const PORT = process.env.PORT || 6001;
 mongoose
   .connect(process.env.MONGO_URL, {})
-  .then(() =>
+  .then(() => {
     app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
-  )
+
+    /*Inject data ONE TIME*/ 
+    // User.insertMany(users)
+    // Post.insertMany(posts)
+  })
   .catch((error) => console.log("Error connecting to Mongo:", error.message));
